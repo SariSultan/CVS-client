@@ -49,7 +49,7 @@
             this.devIdTxtBox.Name = "devIdTxtBox";
             this.devIdTxtBox.Size = new System.Drawing.Size(222, 19);
             this.devIdTxtBox.TabIndex = 0;
-            this.devIdTxtBox.Text = "PC-1234";
+            this.devIdTxtBox.Text = "FreeTrial";
             // 
             // authKeyTxtBox
             // 
@@ -58,6 +58,7 @@
             this.authKeyTxtBox.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.authKeyTxtBox.Location = new System.Drawing.Point(103, 290);
             this.authKeyTxtBox.Name = "authKeyTxtBox";
+            this.authKeyTxtBox.PasswordChar = '*';
             this.authKeyTxtBox.Size = new System.Drawing.Size(222, 19);
             this.authKeyTxtBox.TabIndex = 0;
             this.authKeyTxtBox.Text = "Passw0rD";
@@ -112,9 +113,9 @@
             this.versionLbl.ForeColor = System.Drawing.Color.White;
             this.versionLbl.Location = new System.Drawing.Point(268, 163);
             this.versionLbl.Name = "versionLbl";
-            this.versionLbl.Size = new System.Drawing.Size(63, 13);
+            this.versionLbl.Size = new System.Drawing.Size(69, 13);
             this.versionLbl.TabIndex = 91;
-            this.versionLbl.Text = "Version: 1.0";
+            this.versionLbl.Text = "Version: 1.1b";
             // 
             // label1
             // 
