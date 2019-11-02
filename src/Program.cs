@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Sockets;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
@@ -42,7 +43,7 @@ namespace CVS.ClientV1
                 ServerIp = System.Configuration.ConfigurationSettings.AppSettings["hostName"];
                 if (ServerIp.ToLower().Contains(".com"))
                 {
-                    ServerIp = System.Net.Dns.GetHostEntry(ServerIp).AddressList.FirstOrDefault().ToString();
+                    ServerIp = Dns.GetHostEntry(ServerIp).AddressList.FirstOrDefault(x => x.AddressFamily!=AddressFamily.InterNetworkV6)?.AddressFamily.ToString();
                 }
                 ServerPort = int.Parse(System.Configuration.ConfigurationSettings.AppSettings["hostPort"]);
 
