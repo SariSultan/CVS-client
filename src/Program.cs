@@ -43,7 +43,7 @@ namespace CVS.ClientV1
                 ServerIp = System.Configuration.ConfigurationSettings.AppSettings["hostName"];
                 if (ServerIp.ToLower().Contains(".com"))
                 {
-                    ServerIp = Dns.GetHostEntry(ServerIp).AddressList.FirstOrDefault(x => x.AddressFamily!=AddressFamily.InterNetworkV6)?.AddressFamily.ToString();
+                    ServerIp = Dns.GetHostEntry(ServerIp).AddressList.FirstOrDefault(x => x.AddressFamily==AddressFamily.InterNetwork)?.ToString();
                 }
                 ServerPort = int.Parse(System.Configuration.ConfigurationSettings.AppSettings["hostPort"]);
 
