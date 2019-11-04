@@ -157,12 +157,15 @@ namespace CVS.ClientV1
                     switch (verResult.ScanningResult)
                     {
                         case ScanningReturnResult.InvalidAuthentication:
-                            LogHelper.LogMessageToAll(Program.FileLogger, null,
-                                $"Scanning Refused by the server, due to ${ScanningReturnResult.InvalidAuthentication}, ID={Program.DeviceId}",
+                            var msg=$"Scanning Refused by the server, due to ${ScanningReturnResult.InvalidAuthentication} [{verResult.Message}], ID={Program.DeviceId} \n You might have been blocked by DoS protection, kindly let us know.";
+                            LogHelper.LogMessageToAll(Program.FileLogger, null,msg,
                                 LogMsgType.Warning);
+                            MessageBox.Show(msg);
+                            return;
                             break;
                         case ScanningReturnResult.Error:
                             MessageBox.Show(@"UNKNOWN ERROR, try again later!");
+                            return;
                             break;
                         case ScanningReturnResult.Success:
                             LogHelper.LogMessageToAll(Program.FileLogger, null,
@@ -172,9 +175,12 @@ namespace CVS.ClientV1
 
                             break;
                         case ScanningReturnResult.ServerBusyJobRefused:
-                            LogHelper.LogMessageToAll(Program.FileLogger, null,
-                                $"Scanning Refused by the server, due to ${ScanningReturnResult.ServerBusyJobRefused}, ID={Program.DeviceId}",
+                            var msg2=$"Scanning Refused by the server, due to ${ScanningReturnResult.ServerBusyJobRefused}, ID={Program.DeviceId}";
+                            LogHelper.LogMessageToAll(Program.FileLogger, null,msg2
+                                ,
                                 LogMsgType.Warning);
+                            MessageBox.Show(msg2);
+                            return;
                             break;
                         case ScanningReturnResult.StillScanning:
                             LogHelper.LogMessageToAll(Program.FileLogger, null,
@@ -306,8 +312,6 @@ namespace CVS.ClientV1
                             default:
                                 throw new ArgumentOutOfRangeException();
                         }
-
-
                     }
                 }
                 catch (Exception ex)
@@ -316,7 +320,6 @@ namespace CVS.ClientV1
                     Program.FileLogger.Log(@"exception [most probably server is not running] " + ex.Message,
                         LogMsgType.Exception);
                 }
-
 
             } while (!gotIt);
             EnableUI();
